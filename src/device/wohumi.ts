@@ -1,22 +1,19 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * wohumi.ts: Switchbot BLE API registration.
+ * wohumi.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
-export class WoHumi extends SwitchbotDevice {
+export class WoHumi extends SwitchBotDevice {
   static parseServiceData(buf: Buffer, onlog: ((message: string) => void) | undefined) {
     if (buf.length !== 8) {
       if (onlog && typeof onlog === 'function') {
-        onlog(
-          `[parseServiceDataForWoHumi] Buffer length ${buf.length} !== 8!`,
-        );
+        onlog(`[parseServiceDataForWoHumi] Buffer length ${buf.length} !== 8!`);
       }
       return null;
     }
     const byte1 = buf.readUInt8(1);
     const byte4 = buf.readUInt8(4);
-
 
     const onState = byte1 & 0b10000000 ? true : false; // 1 - on
     const autoMode = byte4 & 0b10000000 ? true : false; // 1 - auto

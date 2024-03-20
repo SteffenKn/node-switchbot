@@ -1,13 +1,13 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * wobulb.ts: Switchbot BLE API registration.
+ * wobulb.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
 /**
  * @see https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/latest/devicetypes/colorbulb.md
  */
-export class WoBulb extends SwitchbotDevice {
+export class WoBulb extends SwitchBotDevice {
   static parseServiceData(manufacturerData: Buffer, onlog: ((message: string) => void) | undefined) {
     if (manufacturerData.length !== 13) {
       if (onlog && typeof onlog === 'function') {

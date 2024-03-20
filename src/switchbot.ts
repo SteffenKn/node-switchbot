@@ -1,10 +1,10 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * switchbot.ts: Switchbot BLE API registration.
+ * switchbot.ts: SwitchBot BLE API registration.
  */
 import { ParameterChecker } from './parameter-checker.js';
 import { Advertising } from './advertising.js';
-import { SwitchbotDevice } from './device.js';
+import { SwitchBotDevice } from './device.js';
 
 import { WoHand } from './device/wohand.js';
 import { WoCurtain } from './device/wocurtain.js';
@@ -32,7 +32,7 @@ type Params = {
 export class SwitchBot {
   private ready: Promise<void>;
   noble?: any;
-  ondiscover?: (device: SwitchbotDevice) => void;
+  ondiscover?: (device: SwitchBotDevice) => void;
   onadvertisement?: (ad: Ad) => void;
   onlog: ((message: string) => void) | undefined;
   scanning = false;
@@ -108,7 +108,7 @@ export class SwitchBot {
        * [Return value]
        * - Promise object
        *   An array will be passed to the `resolve()`, which includes
-       *   `SwitchbotDevice` objects representing the found devices.
+       *   `SwitchBotDevice` objects representing the found devices.
        * ---------------------------------------------------------------- */
   discover(params: Params = {}) {
     const promise = new Promise((resolve, reject) => {
@@ -164,7 +164,7 @@ export class SwitchBot {
       // Initialize the noble object
       this._init()
         .then(() => {
-          const peripherals: Record<string, SwitchbotDevice> = {};
+          const peripherals: Record<string, SwitchBotDevice> = {};
           let timer: NodeJS.Timeout = setTimeout(() => { }, 0);
           const finishDiscovery = () => {
             if (timer) {
@@ -172,7 +172,7 @@ export class SwitchBot {
             }
             this.noble?.removeAllListeners('discover');
             this.noble?.stopScanning();
-            const device_list: SwitchbotDevice[] = [];
+            const device_list: SwitchBotDevice[] = [];
             for (const addr in peripherals) {
               device_list.push(peripherals[addr]);
             }
@@ -183,7 +183,7 @@ export class SwitchBot {
 
           // Set a handler for the 'discover' event
           this.noble?.on('discover', (peripheral: Peripheral) => {
-            const device = this.getDeviceObject(peripheral, p.id, p.model) as SwitchbotDevice;
+            const device = this.getDeviceObject(peripheral, p.id, p.model) as SwitchBotDevice;
             if (!device) {
               return;
             }
@@ -310,7 +310,7 @@ export class SwitchBot {
             device = new WoStrip(peripheral, this.noble);
             break;
           default: // 'resetting', 'unknown'
-            device = new SwitchbotDevice(peripheral, this.noble);
+            device = new SwitchBotDevice(peripheral, this.noble);
         }
       }
       return device;
@@ -521,4 +521,4 @@ export class SwitchBot {
   }
 }
 
-export { SwitchbotDevice };
+export { SwitchBotDevice };

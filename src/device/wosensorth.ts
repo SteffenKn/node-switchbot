@@ -1,10 +1,10 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * wosensorth.ts: Switchbot BLE API registration.
+ * wosensorth.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
-export class WoSensorTH extends SwitchbotDevice {
+export class WoSensorTH extends SwitchBotDevice {
   static parseServiceData(buf: Buffer, onlog: ((message: string) => void) | undefined) {
     if (buf.length !== 6) {
       if (onlog && typeof onlog === 'function') {

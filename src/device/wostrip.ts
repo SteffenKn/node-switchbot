@@ -1,13 +1,13 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * wostrip.ts: Switchbot BLE API registration.
+ * wostrip.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
 /**
  * @see https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/latest/devicetypes/colorbulb.md
  */
-export class WoStrip extends SwitchbotDevice {
+export class WoStrip extends SwitchBotDevice {
   static parseServiceData(buf: Buffer, onlog: ((message: string) => void) | undefined) {
     if (buf.length !== 18) {
       if (onlog && typeof onlog === 'function') {

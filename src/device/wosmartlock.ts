@@ -1,10 +1,10 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * wosmartlock.ts: Switchbot BLE API registration.
+ * wosmartlock.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
-export class WoSmartLock extends SwitchbotDevice {
+export class WoSmartLock extends SwitchBotDevice {
   static parseServiceData(manufacturerData: Buffer, onlog: ((message: string) => void) | undefined) {
     if (manufacturerData.length !== 6) {
       if (onlog && typeof onlog === 'function') {
@@ -77,4 +77,3 @@ export class WoSmartLock extends SwitchbotDevice {
   }
 
 }
-

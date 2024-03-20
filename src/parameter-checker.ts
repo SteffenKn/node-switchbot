@@ -1,6 +1,6 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * parameter-checker.ts: Switchbot BLE API registration.
+ * parameter-checker.ts: SwitchBot BLE API registration.
  */
 type Rule = {
   required?: boolean;

@@ -1,10 +1,10 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * woblindtilt.ts: Switchbot BLE API registration.
+ * woblindtilt.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
-export class WoBlindTilt extends SwitchbotDevice {
+export class WoBlindTilt extends SwitchBotDevice {
   static parseServiceData(buf: Buffer, onlog: ((message: string) => void) | undefined) {
     if (buf.length !== 5 && buf.length !== 6) {
       if (onlog && typeof onlog === 'function') {

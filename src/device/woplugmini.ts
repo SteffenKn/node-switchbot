@@ -1,13 +1,13 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * woplugmini.ts: Switchbot BLE API registration.
+ * woplugmini.ts: SwitchBot BLE API registration.
  */
-import { SwitchbotDevice } from '../device.js';
+import { SwitchBotDevice } from '../device.js';
 
 /**
  * @see https://github.com/OpenWonderLabs/SwitchBotAPI-BLE/blob/latest/devicetypes/plugmini.md
  */
-export class WoPlugMini extends SwitchbotDevice {
+export class WoPlugMini extends SwitchBotDevice {
   static parseServiceData_US(manufacturerData: Buffer, onlog: ((message: string) => void) | undefined) {
     if (manufacturerData.length !== 14) {
       if (onlog && typeof onlog === 'function') {

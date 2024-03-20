@@ -7,8 +7,8 @@
 
 </span>
 
-The node-switchbot is a Node.js module which allows you to move your [Switchbot (Bot)'s](https://www.switch-bot.com/bot) arm
-and [Switchbot Curtain](https://www.switch-bot.com/products/switchbot-curtain),
+The node-switchbot is a Node.js module which allows you to move your [SwitchBot (Bot)'s](https://www.switch-bot.com/bot) arm
+and [SwitchBot Curtain](https://www.switch-bot.com/products/switchbot-curtain),
 also monitor the temperature/humidity from [SwitchBot Thermometer & Hygrometer (Meter)](https://www.switch-bot.com/meter)
 as well as the status from [SwitchBot Motion Sensor](https://www.switch-bot.com/products/motion-sensor)
 and [SwitchBot Contact Sensor](https://www.switch-bot.com/products/contact-sensor)
@@ -28,14 +28,14 @@ But some functionalities of this module were developed through trial and error. 
   - [Quick Start](#quick-start)
     - [Monitoring Advertising packets](#monitoring-advertising-packets)
     - [Moving the arm of the Bot](#moving-the-arm-of-the-bot)
-  - [`Switchbot` object](#switchbot-object)
+  - [`SwitchBot` object](#switchbot-object)
     - [`discover()` method](#discover-method)
     - [`ondiscover` event handler](#ondiscover-event-handler)
     - [`startScan()` method](#startscan-method)
     - [`stopScan()` method](#stopscan-method)
     - [`onadvertisement` event handler](#onadvertisement-event-handler)
     - [`wait()` method](#wait-method)
-  - [`SwitchbotDevice` object](#switchbotdevice-object)
+  - [`SwitchBotDevice` object](#switchbotdevice-object)
     - [Properties](#properties)
     - [`getDeviceName()` method](#getdevicename-method)
     - [`setDeviceName()` method](#setdevicename-method)
@@ -109,9 +109,9 @@ $ npm install node-switchbot
 Monitoring the advertising packets, you can find your devices and know the latest state of each device. The packet contains the settings of the device, the arm position of the Bot, the temperature and humidity of the Meter, and so on.
 
 ```Typescript
-// Load the node-switchbot and get a `Switchbot` constructor object
+// Load the node-switchbot and get a `SwitchBot` constructor object
 import { SwitchBot } from 'node-switchbot';
-// Create a `Switchbot` object
+// Create a `SwitchBot` object
 const switchbot = new SwitchBot();
 
 (async () => {
@@ -129,17 +129,17 @@ const switchbot = new SwitchBot();
 })();
 ```
 
-The [`startScan()`](#startscan-method) methods starts to monitor advertisement packets. In order to receive the packets, you have to assign a callback function to the [`onadvertisement`](#Switchbot-onadvertisement-event-handler).
+The [`startScan()`](#startscan-method) methods starts to monitor advertisement packets. In order to receive the packets, you have to assign a callback function to the [`onadvertisement`](#SwitchBot-onadvertisement-event-handler).
 
-The [`wait()`](#Switchbot-wait-method) method is just a utility method, which wait for the specified milliseconds.
+The [`wait()`](#SwitchBot-wait-method) method is just a utility method, which wait for the specified milliseconds.
 
-The [`startScan()`](#startscan-method) and [`wait()`](#Switchbot-wait-method) methods are asynchronous, they return a `Promise` object. You can write code in promise style as well. What the code below does is as same as what the code above does:
+The [`startScan()`](#startscan-method) and [`wait()`](#SwitchBot-wait-method) methods are asynchronous, they return a `Promise` object. You can write code in promise style as well. What the code below does is as same as what the code above does:
 
 ```Typescript
-// Load the node-switchbot and get a `Switchbot` constructor object
-const Switchbot = require("node-switchbot");
-// Create a `Switchbot` object
-const switchbot = new Switchbot();
+// Load the node-switchbot and get a `SwitchBot` constructor object
+const SwitchBot = require("node-switchbot");
+// Create a `SwitchBot` object
+const switchbot = new SwitchBot();
 
 // Start to monitor advertisement packets
 switchbot
@@ -212,9 +212,9 @@ See the section "[Advertisement data](#Advertisement-data)" for the details of t
 This sample discovers a Bot (WoHand), then put the Bot's arm down, finally put it up in 5 seconds.
 
 ```Typescript
-// Load the node-switchbot and get a `Switchbot` constructor object
+// Load the node-switchbot and get a `SwitchBot` constructor object
 import { SwitchBot } from 'node-switchbot';
-// Create a `Switchbot` object
+// Create a `SwitchBot` object
 const switchbot = new SwitchBot();
 
 (async () => {
@@ -235,13 +235,13 @@ const switchbot = new SwitchBot();
 })();
 ```
 
-In order to manipulate the arm of your Bot, you have to discover your Bot using the [`discover()`](#Switchbot-discover-method) method. The object `{ model: 'H' }` passed to the method means that only Bots will be discovered. That is, Meters will be ignored.
+In order to manipulate the arm of your Bot, you have to discover your Bot using the [`discover()`](#SwitchBot-discover-method) method. The object `{ model: 'H' }` passed to the method means that only Bots will be discovered. That is, Meters will be ignored.
 
-In this code, you can get a [`WoHand`](#SwitchbotDeviceWoHand-object) object representing the found Bot. Using the [`down()`](#SwitchbotDeviceWoHand-down-method) and [`up()`](#SwitchbotDeviceWoHand-up-method) methods of the object, you can move the arm. In addition to these methods, you can use the [`press()`](#SwitchbotDeviceWoHand-press-method), [`turnOn()`](#SwitchbotDeviceWoHand-turnOn-method), and [`turnOff()`](#SwitchbotDeviceWoHand-turnOff-method) methods as well.
+In this code, you can get a [`WoHand`](#SwitchBotDeviceWoHand-object) object representing the found Bot. Using the [`down()`](#SwitchBotDeviceWoHand-down-method) and [`up()`](#SwitchBotDeviceWoHand-up-method) methods of the object, you can move the arm. In addition to these methods, you can use the [`press()`](#SwitchBotDeviceWoHand-press-method), [`turnOn()`](#SwitchBotDeviceWoHand-turnOn-method), and [`turnOff()`](#SwitchBotDeviceWoHand-turnOff-method) methods as well.
 
 ---
 
-## `Switchbot` object
+## `SwitchBot` object
 
 In order to use the node-switchbot, you have to load the node-switchbot module as follows:
 
@@ -263,13 +263,13 @@ The `SwitchBot` constructor takes an argument optionally. It must be a hash obje
 
 The node-switchbot module uses the [`@abandonware/noble`](https://github.com/abandonware/noble) module in order to interact with BLE devices. If you want to interact other BLE devices using the `@abandonware/noble` module, you can create an `Noble` object by yourself, then pass it to this module. If you don't specify a `Noble` object to the `noble` property, this module automatically create a `Noble` object internally.
 
-The sample code below shows how to pass a `Noble` object to the `Switchbot` constructor.
+The sample code below shows how to pass a `Noble` object to the `SwitchBot` constructor.
 
 ```Typescript
 // Create a Noble object
 const noble = require('@abandonware/noble');
 
-// Create a Switchbot object
+// Create a SwitchBot object
 import { SwitchBot } from 'node-switchbot';
 const switchbot = new SwitchBot({ 'noble': noble })
 ```
@@ -297,7 +297,7 @@ switchbot.discover().then((device_list) => {
 });
 ```
 
-If no parameter is passed to the method as the code above, an `Array` object will be passed to the `resolve()` function in 5 seconds. The `Array` object contains [`SwitchbotDevice`](#SwitchbotDevice-object) objects representing the found devices. See the section "[`SwitchbotDevice`](#SwitchbotDevice-object) objects" for more details.
+If no parameter is passed to the method as the code above, an `Array` object will be passed to the `resolve()` function in 5 seconds. The `Array` object contains [`SwitchBotDevice`](#SwitchBotDevice-object) objects representing the found devices. See the section "[`SwitchBotDevice`](#SwitchBotDevice-object) objects" for more details.
 
 If you want a quick response, you can set the `quick` property to `true`.
 
@@ -316,7 +316,7 @@ As the `quick` property is set to `true`, the `resolve()` function will be calle
 
 ### `ondiscover` event handler
 
-The `ondiscover` property on the [`Switchbot`](#Switchbot-object) object is an event handler called whenever a device is newly found in the discovery process. A [`SwitchbotDevice`](#SwitchbotDevice-object) object is passed to the callback function set to the `ondiscover` property.
+The `ondiscover` property on the [`SwitchBot`](#SwitchBot-object) object is an event handler called whenever a device is newly found in the discovery process. A [`SwitchBotDevice`](#SwitchBotDevice-object) object is passed to the callback function set to the `ondiscover` property.
 
 ```Typescript
 switchbot.ondiscover = (device) => {
@@ -342,12 +342,12 @@ The discovery process was finished.
 
 The `startScan()` method starts to scan advertising packets coming from devices. This method takes an argument which is a hash object containing the parameters as follows:
 
-| Property | Type   | Required | Description                                                                                                                                                                                                      |
-| :------- | :----- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Property | Type   | Required | Description                                                                                                                                                                                                                                                                                                       |
+| :------- | :----- | :------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `model`  | String | Optional | `"H"`, `"T"`, `"c"`, `"g"` or `"j"`. If `"H"` is specified, this method will discover only Bots. If `"T"` is specified, this method will discover only Meters. If `"c"` is specified, this method will discover only Curtains. If `"g"` or `"j"` is specified, this method will discover only (US/JP) Plug Minis. |
-| `id`     | String | Optional | If this value is set, this method will discover only a device whose ID is as same as this value. The ID is identical to the MAC address. This value is case-insensitive, and colons are ignored.                 |
+| `id`     | String | Optional | If this value is set, this method will discover only a device whose ID is as same as this value. The ID is identical to the MAC address. This value is case-insensitive, and colons are ignored.                                                                                                                  |
 
-Whenever a packet is received, the callback function set to the [`onadvertisement`](#Switchbot-onadvertisement-event-handler) property of the [`Switchbot`](#Switchbot-object) object will be called. When a packet is received, a hash object representing the packet will be passed to the callback function.
+Whenever a packet is received, the callback function set to the [`onadvertisement`](#SwitchBot-onadvertisement-event-handler) property of the [`SwitchBot`](#SwitchBot-object) object will be called. When a packet is received, a hash object representing the packet will be passed to the callback function.
 
 ```Typescript
 // Set a callback function called when a packet is received
@@ -397,7 +397,7 @@ The `stopScan()` method stops to scan advertising packets coming from devices. T
 
 ### `onadvertisement` event handler
 
-If a callback function is set to the `onadvertisement` property, the callback function will be called whenever an advertising packet is received from a device during the scan is active (from the moment when the [`startScan()`](#startscan-method) method is called, to the moment when the [`stopScan()`](#Switchbot-stopScan-method) method is called).
+If a callback function is set to the `onadvertisement` property, the callback function will be called whenever an advertising packet is received from a device during the scan is active (from the moment when the [`startScan()`](#startscan-method) method is called, to the moment when the [`stopScan()`](#SwitchBot-stopScan-method) method is called).
 
 See the section "[`startScan()` method](#startscan-method)" for details.
 
@@ -405,21 +405,21 @@ See the section "[`startScan()` method](#startscan-method)" for details.
 
 The `wait()` method waits for the specified milliseconds. This method takes an integer representing the duration (millisecond). This method returns a `Promise` object.
 
-This method has nothing to do with Switchbot devices. It's just a utility method. See the section "[Quick Start](#Quick-Start)" for details of the usage of this method.
+This method has nothing to do with SwitchBot devices. It's just a utility method. See the section "[Quick Start](#Quick-Start)" for details of the usage of this method.
 
 ---
 
-## `SwitchbotDevice` object
+## `SwitchBotDevice` object
 
-The `SwitchbotDevice` object represents a Switchbot device (Bot, Meter, Curtain, Contact or Motion), which is created through the discovery process triggered by the [`Switchbot.discover()`](#Switchbot-discover-method) method.
+The `SwitchBotDevice` object represents a SwitchBot device (Bot, Meter, Curtain, Contact or Motion), which is created through the discovery process triggered by the [`SwitchBot.discover()`](#SwitchBot-discover-method) method.
 
-Actually, the `SwitchbotDevice` object is a super class of the [`WoHand`](#SwitchbotDeviceWoHand-object) and `WoSensorTH` objects. The [`WoHand`](#SwitchbotDeviceWoHand-object) object represents a Bot, the `WoSensorTH` object represents a Meter.
+Actually, the `SwitchBotDevice` object is a super class of the [`WoHand`](#SwitchBotDeviceWoHand-object) and `WoSensorTH` objects. The [`WoHand`](#SwitchBotDeviceWoHand-object) object represents a Bot, the `WoSensorTH` object represents a Meter.
 
-You can use the properties and methods described in this section on Bot, Meter, Curtain, Contact and Motion. See the section "[`WoHand` object](#SwitchbotDeviceWoHand-object)" for the details of the functionalities available only on Bot. For now, `WoSensorTH` object has no additional functionality.
+You can use the properties and methods described in this section on Bot, Meter, Curtain, Contact and Motion. See the section "[`WoHand` object](#SwitchBotDeviceWoHand-object)" for the details of the functionalities available only on Bot. For now, `WoSensorTH` object has no additional functionality.
 
 ### Properties
 
-The `SwitchbotDevice` object supports the properties as follows:
+The `SwitchBotDevice` object supports the properties as follows:
 
 | Property          | Type     | Description                                                                                                                                                  |
 | :---------------- | :------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -428,14 +428,14 @@ The `SwitchbotDevice` object supports the properties as follows:
 | `model`           | String   | This value is `"H"` "Bot (WoHand)", `"T"` "Meter (WoSensorTH)", `"c"` "Curtain (WoCurtain)", `"d"` "Contact (WoContact)" or `"s"` "Motion (WoMotion)".       |
 | `modelName`       | String   | This value is `"WoHand"`, `"WoSensorTH"`, `WoCurtain`, `WoContect` or `WoMotion`.                                                                            |
 | `connectionState` | String   | This value indicates the BLE connection state. `"connecting"`, `"connected"`, `"disconnecting"`, or `"disconnected"`.                                        |
-| `onconnect`       | Function | See the section "[`onconnect` event handler](#SwitchbotDevice-onconnect-event-handler)" for details.                                                         |
-| `ondisconnect`    | Function | See the section "[`ondisconnect` event handler](#SwitchbotDevice-ondisconnect-event-handler)" for details.                                                   |
+| `onconnect`       | Function | See the section "[`onconnect` event handler](#SwitchBotDevice-onconnect-event-handler)" for details.                                                         |
+| `ondisconnect`    | Function | See the section "[`ondisconnect` event handler](#SwitchBotDevice-ondisconnect-event-handler)" for details.                                                   |
 
 ### `getDeviceName()` method
 
 The `getDeviceName()` method fetches the device name saved in the device. This method returns a `Promise` object.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 If the device name is fetched successfully, the device name will be passed to the `resolve()`.
 
@@ -465,7 +465,7 @@ WoHand;
 
 The `setDeviceName()` method update the device name saved in the device with the name specified as the first argument. This method returns a `Promise` object. Nothing will be passed to the `resolve()` function.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 The character set of the device name saved in the device is UTF-8. The byte length of the name must be less than or equal to 20 bytes. If the name consists of only ASCII characters, up to 20 characters would be allowed. But if the name consists of multibyte characters, the upper limit of characters would be fewer than half. For example, Japanese characters could be saved at most 6 characters because most of Japanese characters consume 3 byte per each character.
 
@@ -489,11 +489,11 @@ switchbot
 
 The `connect()` method establishes a connection with the device (i.e., pairing). This method returns a `Promise` object. If the device has already been connected, this method does nothing and calls the `resolve()` function immediately.
 
-Most of the methods implemented in the `SwitchbotDevice` object automatically connect and disconnect the device. But this mechanism would be absolutely inefficient if you want to manipulate the device repeatedly in the short time.
+Most of the methods implemented in the `SwitchBotDevice` object automatically connect and disconnect the device. But this mechanism would be absolutely inefficient if you want to manipulate the device repeatedly in the short time.
 
-The connection established using the `connect()` method is not disconnected automatically unless the [`disconnect()`](#SwitchbotDevice-disconnect-method) method is explicitly called.
+The connection established using the `connect()` method is not disconnected automatically unless the [`disconnect()`](#SwitchBotDevice-disconnect-method) method is explicitly called.
 
-The code snippet below establishes a connection with the Bot using the `connect()` method, then puts the Bot's arm down, then waits for 5 seconds, then puts the arm down, finally disconnects the device using the [`disconnect()`](#SwitchbotDevice-disconnect-method) method:
+The code snippet below establishes a connection with the Bot using the `connect()` method, then puts the Bot's arm down, then waits for 5 seconds, then puts the arm down, finally disconnects the device using the [`disconnect()`](#SwitchBotDevice-disconnect-method) method:
 
 ```Typescript
 let device = null;
@@ -552,13 +552,13 @@ Done.
 
 The `disconnect()` method disconnects the device. This method returns a `Promise` object. If the device has already been disconnected, this method does nothing and calls the `resolve()` function immediately.
 
-See the [previous section](#SwitchbotDevice-connect-method) for more details.
+See the [previous section](#SwitchBotDevice-connect-method) for more details.
 
 ### `onconnect` event handler
 
 The `onconnect` event handler will be called when the connection with the device is established. Nothing will be passed to the handler.
 
-The code below calls the [`press()`](#SwitchbotDeviceWoHand-press-method) method, while callback functions are attached to the `onconnect` and `ondisconnect`.
+The code below calls the [`press()`](#SwitchBotDeviceWoHand-press-method) method, while callback functions are attached to the `onconnect` and `ondisconnect`.
 
 ```Typescript
 switchbot
@@ -602,25 +602,25 @@ Disconnected.
 Done.
 ```
 
-Seeing the result, you would find the [`press()`](#SwitchbotDeviceWoHand-press-method) method automatically connects and disconnects the device.
+Seeing the result, you would find the [`press()`](#SwitchBotDeviceWoHand-press-method) method automatically connects and disconnects the device.
 
 ### `ondisconnect` event handler
 
-The `ondisconnect` event handler will be called when the connection with the device is closed. Nothing will be passed to the handler. See the previous section "[`onconnect` event handler](#SwitchbotDevice-onconnect-event-handler)" for more details.
+The `ondisconnect` event handler will be called when the connection with the device is closed. Nothing will be passed to the handler. See the previous section "[`onconnect` event handler](#SwitchBotDevice-onconnect-event-handler)" for more details.
 
 ---
 
 ## `WoHand` object
 
-The `WoHand` object represents a Bot, which is created through the discovery process triggered by the [`Switchbot.discover()`](#Switchbot-discover-method) method.
+The `WoHand` object represents a Bot, which is created through the discovery process triggered by the [`SwitchBot.discover()`](#SwitchBot-discover-method) method.
 
-Actually, the `WoHand` is an object inherited from the [`SwitchbotDevice`](#SwitchbotDevice-object). You can use not only the method described in this section but also the properties and methods implemented in the [`SwitchbotDevice`](#SwitchbotDevice-object) object.
+Actually, the `WoHand` is an object inherited from the [`SwitchBotDevice`](#SwitchBotDevice-object). You can use not only the method described in this section but also the properties and methods implemented in the [`SwitchBotDevice`](#SwitchBotDevice-object) object.
 
 ### `press()` method
 
 The `press()` method sends a press command to the Bot. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 ```Typescript
 switchbot
@@ -642,7 +642,7 @@ When the Bot receives this command, the Bot's arm will be put down (stretched), 
 
 The `turnOn()` method sends a turn-on command to the Bot. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Bot receives this command, the Bot's arm will be put down (stretched) or put up (retracted) depending on the mode setting.
 
@@ -670,7 +670,7 @@ switchbot
 
 The `turnOff()` method sends a turn-off command to the Bot. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Bot receives this command, the Bot's arm will be put down (stretched) or put up (retracted) depending on the mode setting.
 
@@ -698,7 +698,7 @@ switchbot
 
 The `down()` method sends a down command to the Bot. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Bot receives this command, the Bot's arm will be put down (stretched) regardless of the mode setting.
 
@@ -720,7 +720,7 @@ switchbot
 
 The `up()` method sends an up command to the Bot. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Bot receives this command, the Bot's arm will be put up (retracted) regardless of the mode setting.
 
@@ -742,15 +742,15 @@ switchbot
 
 ## `WoCurtain` object
 
-The `WoCurtain` object represents a Curtain, which is created through the discovery process triggered by the [`Switchbot.discover()`](#Switchbot-discover-method) method.
+The `WoCurtain` object represents a Curtain, which is created through the discovery process triggered by the [`SwitchBot.discover()`](#SwitchBot-discover-method) method.
 
-Actually, the `WoCurtain` is an object inherited from the [`SwitchbotDevice`](#SwitchbotDevice-object). You can use not only the method described in this section but also the properties and methods implemented in the [`SwitchbotDevice`](#SwitchbotDevice-object) object.
+Actually, the `WoCurtain` is an object inherited from the [`SwitchBotDevice`](#SwitchBotDevice-object). You can use not only the method described in this section but also the properties and methods implemented in the [`SwitchBotDevice`](#SwitchBotDevice-object) object.
 
 ### `open()` method
 
 The `open()` method sends an open command to the Curtain. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Curtain receives this command, the Curtain will open the curtain (0% position). If not calibrated, the Curtain does not move.
 
@@ -774,7 +774,7 @@ switchbot
 
 The `close()` method sends a close command to the Curtain. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Curtain receives this command, the Curtain will close the curtain (100% position). If not calibrated, the Curtain does not move.
 
@@ -798,7 +798,7 @@ switchbot
 
 The `pause()` method sends a pause command to the Curtain. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Curtain receives this command, the Curtain will pause.
 
@@ -820,13 +820,13 @@ switchbot
 
 The `runToPos()` method sends a position command to the Curtain. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Curtain receives this command, the Curtain will run to the percentage position. If not calibrated, the Curtain does not move.
 
 The `open()` method sends an open command to the Curtain. This method returns a `Promise` object. Nothing will be passed to the `resove()`.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 When the Curtain receives this command, the Curtain will open the curtain (0% position). If not calibrated, the Curtain does not move.
 
@@ -850,35 +850,36 @@ switchbot
 ```
 
 ---
+
 ## `WoPlugMini` object
 
-The `WoPlugMini ` object represents a PlugMini, which is created through the discovery process triggered by the [`Switchbot.discover()`](#Switchbot-discover-method) method.
+The `WoPlugMini ` object represents a PlugMini, which is created through the discovery process triggered by the [`SwitchBot.discover()`](#SwitchBot-discover-method) method.
 
-Actually, the `WoPlugMini ` is an object inherited from the [`SwitchbotDevice`](#SwitchbotDevice-object). You can use not only the method described in this section but also the properties and methods implemented in the [`SwitchbotDevice`](#SwitchbotDevice-object) object.
+Actually, the `WoPlugMini ` is an object inherited from the [`SwitchBotDevice`](#SwitchBotDevice-object). You can use not only the method described in this section but also the properties and methods implemented in the [`SwitchBotDevice`](#SwitchBotDevice-object) object.
 
 ### `turnOn()` method
 
 The `turnOn()` method sends a turn-on command to the PlugMini. This method returns a `Promise` object. A `boolean` value indicating whether the PlugMini is on (`true`), is passed to the `resolve()` method of the Promise.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 ### `turnOff()` method
 
 The `turnOff()` method sends a turn-off command to the PlugMini. This method returns a `Promise` object. A `boolean` value indicating whether the PlugMini is off (`false`), is passed to the `resolve()` method of the Promise.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 ### `toggle()` method
 
 The `toggle()` method sends a toggle command to the PlugMini, toggling between the on and off state. This method returns a `Promise` object. A `boolean` value indicating whether the PlugMini is on (`true`) or off (`false`), is passed to the `resolve()` method of the Promise.
 
-If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchbotDevice-connect-method) method in advance.
+If no connection is established with the device, this method automatically establishes a connection with the device, then finally closes the connection. You don't have to call the [`connect()`](#SwitchBotDevice-connect-method) method in advance.
 
 ---
 
 ## Advertisement data
 
-After the [`startScan()`](#startscan-method) method is invoked, the [`onadvertisement`](#Switchbot-onadvertisement-event-handler) event handler will be called whenever an advertising packet comes from the switchbot devices. An object containing the properties as follows will be passed to the event handler:
+After the [`startScan()`](#startscan-method) method is invoked, the [`onadvertisement`](#SwitchBot-onadvertisement-event-handler) event handler will be called whenever an advertising packet comes from the switchbot devices. An object containing the properties as follows will be passed to the event handler:
 
 | Property      | Type    | Description                                                                                                                                                  |
 | :------------ | :------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1088,20 +1089,20 @@ Example of the advertisement data:
 
 Structure of the `serviceData`:
 
-| Property      | Type    | Description                                                                         |
-| :------------ | :------ | :---------------------------------------------------------------------------------- |
-| `model`       | String  | This value is always `"j"` or `"g"`, which means "PlugMini" (JP or US).             |
-| `modelName`   | String  | This value is always `"WoPlugMini"`, which means "PlugMini".                        |
-| `state   `    | Boolean | This value indicates whether the plug mini is turned on (`true`) or not (`false`).  |
-| `delay`       | Boolean | Indicates whether a delay is present.                                               |
-| `timer`       | Boolean | Indicates whether a timer is present.                                               |
-| `syncUtcTime` | boolean | Indicates whether the UTC time has been synchronized.                               |
-| `overload`    | boolean | Indicates whether the Plug Mini is overloaded, more than 15A current overload.      |
-| `currentPower`| Float   | Current power consumption in Watts.                                                 |
+| Property       | Type    | Description                                                                        |
+| :------------- | :------ | :--------------------------------------------------------------------------------- |
+| `model`        | String  | This value is always `"j"` or `"g"`, which means "PlugMini" (JP or US).            |
+| `modelName`    | String  | This value is always `"WoPlugMini"`, which means "PlugMini".                       |
+| `state   `     | Boolean | This value indicates whether the plug mini is turned on (`true`) or not (`false`). |
+| `delay`        | Boolean | Indicates whether a delay is present.                                              |
+| `timer`        | Boolean | Indicates whether a timer is present.                                              |
+| `syncUtcTime`  | boolean | Indicates whether the UTC time has been synchronized.                              |
+| `overload`     | boolean | Indicates whether the Plug Mini is overloaded, more than 15A current overload.     |
+| `currentPower` | Float   | Current power consumption in Watts.                                                |
 
 ---
 
 ## References
 
-- [Switchbot official global site](https://www.switch-bot.com/)
+- [SwitchBot official global site](https://www.switch-bot.com/)
 - [GitHub - OpenWonderLabs/SwitchBotAPI-BLE](https://github.com/OpenWonderLabs/SwitchBotAPI-BLE)

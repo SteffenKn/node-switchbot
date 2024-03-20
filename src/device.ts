@@ -1,6 +1,6 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * device.ts: Switchbot BLE API registration.
+ * device.ts: SwitchBot BLE API registration.
  */
 import { Characteristic, Peripheral, Service } from '@abandonware/noble';
 import { ParameterChecker } from './parameter-checker.js';
@@ -12,7 +12,7 @@ type Chars = {
   device: Characteristic | null,
 } | null;
 
-export class SwitchbotDevice {
+export class SwitchBotDevice {
   _peripheral;
   _noble;
   _chars: Chars;

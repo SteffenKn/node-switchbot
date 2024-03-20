@@ -1,6 +1,6 @@
 /* Copyright(C) 2024, donavanbecker (https://github.com/donavanbecker). All rights reserved.
  *
- * advertising.ts: Switchbot BLE API registration.
+ * advertising.ts: SwitchBot BLE API registration.
  */
 import { Peripheral } from '@abandonware/noble';
 
