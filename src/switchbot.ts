@@ -300,7 +300,7 @@ export class SwitchBot {
             device = new WoPlugMini(peripheral, this.noble);
             break;
           case 'o':
-            //device = new SwitchbotDeviceWoSmartLock(peripheral, this.noble);
+            device = new WoSmartLock(peripheral, this.noble);
             break;
           case 'i':
             device = new WoSensorTH(peripheral, this.noble);
