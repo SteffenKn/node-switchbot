@@ -6,28 +6,31 @@ import { ParameterChecker } from './parameter-checker.js';
 import { Advertising } from './advertising.js';
 import { SwitchBotDevice } from './device.js';
 
-import { WoHand } from './device/wohand.js';
-import { WoCurtain } from './device/wocurtain.js';
-import { WoBlindTilt } from './device/woblindtilt.js';
-import { WoPresence } from './device/wopresence.js';
-import { WoContact } from './device/wocontact.js';
-import { WoSensorTH } from './device/wosensorth.js';
-import { WoIOSensorTH } from './device/woiosensorth.js';
-import { WoHumi } from './device/wohumi.js';
-import { WoPlugMini } from './device/woplugmini.js';
-import { WoBulb } from './device/wobulb.js';
-import { WoStrip } from './device/wostrip.js';
+import {
+  WoHand,
+  WoCurtain,
+  WoBlindTilt,
+  WoPresence,
+  WoContact,
+  WoSensorTH,
+  WoSmartLock,
+  WoIOSensorTH,
+  WoHumi,
+  WoPlugMini,
+  WoBulb,
+  WoStrip,
+} from './device/index.js';
 import { Ad } from './advertising.js';
 
 import { Peripheral } from '@abandonware/noble';
 
-type Params = {
-  duration?: number,
-  model?: string,
-  id?: string,
-  quick?: false,
-  noble?: any,
-}
+export type SwitchBotParams = {
+  duration?: number;
+  model?: string;
+  id?: string;
+  quick?: boolean;
+  noble?: any;
+};
 
 export class SwitchBot {
   private ready: Promise<void>;
@@ -51,13 +54,12 @@ export class SwitchBot {
                *           |         |          | module automatically creates it.
                * ---------------------------------------------------------------- */
 
-
-  constructor(params?: Params) {
+  constructor(params?: SwitchBotParams) {
     this.ready = this.init(params);
   }
 
   // Check parameters
-  async init(params?: Params) {
+  async init(params?: SwitchBotParams) {
     let noble;
     if (params && params.noble) {
       noble = params.noble;
@@ -110,7 +112,7 @@ export class SwitchBot {
        *   An array will be passed to the `resolve()`, which includes
        *   `SwitchBotDevice` objects representing the found devices.
        * ---------------------------------------------------------------- */
-  discover(params: Params = {}) {
+  discover(params: SwitchBotParams = {}) {
     const promise = new Promise((resolve, reject) => {
       // Check the parameters
       const valid = ParameterChecker.check(
@@ -396,7 +398,7 @@ export class SwitchBot {
      * - Promise object
      *   Nothing will be passed to the `resolve()`.
      * ---------------------------------------------------------------- */
-  startScan(params: Params = {}) {
+  startScan(params: SwitchBotParams = {}) {
     const promise = new Promise<void>((resolve, reject) => {
       // Check the parameters
       const valid = ParameterChecker.check(
@@ -522,3 +524,4 @@ export class SwitchBot {
 }
 
 export { SwitchBotDevice };
+export * from './device/index.js';
