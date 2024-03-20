@@ -522,6 +522,3 @@ export class SwitchBot {
     });
   }
 }
-
-export { SwitchBotDevice };
-export * from './device/index.js';
