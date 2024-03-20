@@ -6,11 +6,9 @@ import { SwitchBotDevice } from '../device.js';
 
 export class WoHand extends SwitchBotDevice {
   static parseServiceData(buf: Buffer, onlog: ((message: string) => void) | undefined) {
-    if (buf.length !== 3) {
+    if (buf.length < 3) {
       if (onlog && typeof onlog === 'function') {
-        onlog(
-          `[parseServiceData] Buffer length ${buf.length} !== 3!`,
-        );
+        onlog(`[parseServiceData] Buffer length ${buf.length} < 3!`);
       }
       return null;
     }
