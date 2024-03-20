@@ -7,9 +7,9 @@ import { ParameterChecker } from './parameter-checker.js';
 import { Advertising } from './advertising.js';
 
 type Chars = {
-  write: Characteristic | null,
-  notify: Characteristic | null,
-  device: Characteristic | null,
+  write: Characteristic | null;
+  notify: Characteristic | null;
+  device: Characteristic | null;
 } | null;
 
 export class SwitchBotDevice {

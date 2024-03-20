@@ -113,7 +113,7 @@ export class SwitchBot {
        *   `SwitchBotDevice` objects representing the found devices.
        * ---------------------------------------------------------------- */
   discover(params: SwitchBotParams = {}) {
-    const promise = new Promise((resolve, reject) => {
+    const promise = new Promise<SwitchBotDevice[]>((resolve, reject) => {
       // Check the parameters
       const valid = ParameterChecker.check(
         params,

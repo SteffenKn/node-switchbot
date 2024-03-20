@@ -20,9 +20,9 @@ import { WoSmartLock } from './device/wosmartlock.js';
 export type Ad = {
   id: string;
   address: string;
-  rssi: number,
+  rssi: number;
   serviceData: any;
-} | null
+} | null;
 
 export class Advertising {
 
